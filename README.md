@@ -1,102 +1,437 @@
-# E-commerce Order ETL Pipeline
+#  E-Commerce ETL Analytics Pipeline
 
-A Python-based ETL pipeline for processing e-commerce order data.
+> An end-to-end Data Engineering project that extracts, validates, transforms, and loads E-Commerce data into a normalized MySQL database, followed by SQL analytics and interactive Power BI dashboards.
 
-## Project Overview
+---
 
-This project implements a complete ETL (Extract, Transform, Load) pipeline for processing e-commerce order data. The pipeline extracts data from CSV files, validates and transforms it, then loads it into a MySQL database.
+#  Project Overview
 
-## Project Structure
+This project demonstrates a complete ETL (Extract, Transform, Load) pipeline built using Python, Pandas, SQLAlchemy, and MySQL. The pipeline processes raw E-Commerce datasets, performs data quality validation, applies transformations, and loads the cleaned data into a relational database for business analytics.
+
+The project also includes advanced SQL analytical queries and a Power BI dashboard for generating business insights.
+
+---
+
+#  Project Architecture
 
 ```
-Ecom_order/
-├── data/
-│   ├── raw/                    # Raw CSV data files
-│   │   ├── categories.csv
-│   │   ├── customers.csv
-│   │   ├── inventory.csv
-│   │   ├── orders.csv
-│   │   ├── order_items.csv
-│   │   ├── payments.csv
-│   │   ├── products.csv
-│   │   ├── returns.csv
-│   │   ├── reviews.csv
-│   │   └── shipping.csv
-│   ├── cleaned/               # Cleaned data (gitignored)
-│   └── processed/             # Processed data (gitignored)
-├── database/
-│   ├── schema.sql             # Database schema
-│   ├── queries.sql            # SQL queries
-│   └── views.sql              # Database views
-├── etl/
-│   ├── extract.py             # Data extraction module
-│   ├── transform.py           # Data transformation module
-│   ├── load.py                # Data loading module
-│   ├── validate.py            # Data validation module
-│   ├── mapping.py             # Data mapping module
-│   └── utils.py               # Utility functions
-├── reports/                   # Data quality reports
-├── config.py                  # Database configuration
-├── main.py                    # Main pipeline entry point
-├── profiling.py               # Data profiling module
-├── test_connection.py         # Database connection test
-├── requirements.txt           # Python dependencies
-└── README.md                  # This file
+                Raw CSV Files
+                      │
+                      ▼
+            Extract Data (Python)
+                      │
+                      ▼
+         Data Validation (Quality Checks)
+                      │
+                      ▼
+        Data Transformation & Cleaning
+                      │
+                      ▼
+            Load into MySQL Database
+                      │
+                      ▼
+             SQL Analytics Reports
+                      │
+                      ▼
+          Interactive Power BI Dashboard
 ```
 
-## Installation
+---
 
-1. Clone the repository
-2. Install Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+#  Features
 
-## Configuration
+- Automated extraction of multiple CSV datasets
+- Data quality validation
+- Missing value detection
+- Duplicate record detection
+- Invalid email validation
+- Data transformation and cleaning
+- Date conversion
+- Schema validation
+- Automated MySQL loading using SQLAlchemy
+- Normalized relational database design
+- Advanced SQL analytics
+- Interactive Power BI dashboard
+- Modular ETL architecture
 
-Update the database configuration in `config.py`:
+---
 
-```python
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "your_username",
-    "password": "your_password",
-    "database": "ecomm_db",
-    "port": 3306
-}
+#  Tech Stack
+
+## Programming
+
+- Python 3.x
+- SQL
+
+## Libraries
+
+- Pandas
+- SQLAlchemy
+- PyMySQL
+
+## Database
+
+- MySQL
+
+## Visualization
+
+- Power BI
+
+## Tools
+
+- VS Code
+- MySQL Workbench
+- Git
+- GitHub
+
+---
+
+#  Project Structure
+
+```
+Ecommerce-ETL-Analytics
+│
+├── data
+│   ├── raw
+│   ├── cleaned
+│   └── processed
+│
+├── database
+│   └── schema.sql
+│
+├── etl
+│   ├── extract.py
+│   ├── validate.py
+│   ├── transform.py
+│   ├── load.py
+│   └── mapping.py
+│
+├── reports
+│   └── data_quality_report.csv
+│
+├── sql
+│   ├── 01_basic_queries.sql
+│   ├── 02_join_queries.sql
+│   ├── 03_aggregation_queries.sql
+│   ├── 04_window_functions.sql
+│   ├── 05_cte_queries.sql
+│   └── 06_business_kpis.sql
+│
+├── dashboard
+│   ├── Ecommerce_Dashboard.pbix
+│   ├── dashboard_page1.png
+│   └── dashboard_page2.png
+│
+├── screenshots
+│
+├── config.py
+├── main.py
+├── requirements.txt
+└── README.md
 ```
 
-## Usage
+---
 
-Run the ETL pipeline:
+#  Database Schema
+
+The project uses a normalized relational database consisting of the following tables:
+
+- Categories
+- Customers
+- Products
+- Inventory
+- Orders
+- Payments *(currently excluded from dashboard due to source data integrity issues)*
+- Shipping
+- Returns
+- Reviews
+- Order Items
+
+The schema includes:
+
+- Primary Keys
+- Foreign Keys
+- One-to-Many Relationships
+- Normalized Design
+
+---
+
+# ⚙️ ETL Workflow
+
+## 1️ Extract
+
+Reads multiple CSV datasets dynamically.
+
+Datasets include:
+
+- Categories
+- Customers
+- Products
+- Inventory
+- Orders
+- Payments
+- Shipping
+- Returns
+- Reviews
+- Order Items
+
+---
+
+## 2️ Validate
+
+Performs multiple data quality checks including:
+
+- Missing Values
+- Duplicate Rows
+- Duplicate Emails
+- Invalid Emails
+- Negative Prices
+- Selling Price below Cost
+- Negative Quantity
+- Invalid Ratings
+
+Generates:
+
+```
+reports/data_quality_report.csv
+```
+
+---
+
+## 3️ Transform
+
+Applies the following transformations:
+
+- Date Conversion
+- Text Cleaning
+- Lowercase Emails
+- Missing Value Handling
+- Duplicate Removal
+- Schema Mapping
+
+---
+
+## 4️ Load
+
+Loads transformed data into MySQL using SQLAlchemy.
+
+Features:
+
+- Connection Validation
+- Schema Validation
+- Batch Loading
+- Table Truncation
+- Error Handling
+
+---
+
+#  SQL Analytics
+
+The project includes more than 50 SQL queries organized into the following modules:
+
+### Basic Queries
+
+- Record Counts
+- Filtering
+- Sorting
+
+### Join Queries
+
+- Customer Orders
+- Product Details
+- Order Summary
+- Inventory Reports
+
+### Aggregation Queries
+
+- Revenue Analysis
+- Category Sales
+- Customer Distribution
+- Product Ratings
+
+### Window Functions
+
+- RANK()
+- DENSE_RANK()
+- ROW_NUMBER()
+- LAG()
+- LEAD()
+
+### Common Table Expressions (CTEs)
+
+- Top Customers
+- Revenue Reports
+- Inventory Analysis
+
+### Business KPIs
+
+- Revenue
+- Orders
+- Customers
+- Products
+- Inventory
+- Returns
+- Ratings
+
+---
+
+#  Power BI Dashboard
+
+The dashboard provides interactive business insights including:
+
+## Executive Dashboard
+
+- Total Revenue
+- Total Orders
+- Total Customers
+- Total Products
+- Average Rating
+- Returns Analysis
+
+## Visualizations
+
+- Revenue Trend
+- Revenue by Category
+- Top Products
+- Inventory by Warehouse
+- Customer Distribution
+- Product Ratings
+- Return Analysis
+
+<img width="1525" height="873" alt="image" src="https://github.com/user-attachments/assets/4e004a71-301d-4a6e-9b13-0a183cebbb0e" />
+
+
+#  Installation
+
+Clone the repository
 
 ```bash
-python main.py
+git clone https://github.com/yourusername/Ecommerce-ETL-Analytics.git
 ```
 
-Test database connection:
+Move into the project directory
 
 ```bash
-python test_connection.py
+cd Ecommerce-ETL-Analytics
 ```
 
-## Features
+Install dependencies
 
-- **Data Extraction**: Read multiple CSV files with e-commerce data
-- **Data Validation**: Validate data quality and integrity
-- **Data Transformation**: Clean and transform raw data
-- **Data Loading**: Load processed data into MySQL database
-- **Data Profiling**: Generate data quality reports
-- **Error Handling**: Comprehensive error handling and logging
+```bash
+pip install -r requirements.txt
+```
 
-## Data Sources
+---
 
-The pipeline processes the following e-commerce data:
-- Categories, Customers, Inventory
-- Orders and Order Items
-- Payments and Products
-- Returns, Reviews, and Shipping data
+#  Running the ETL Pipeline
 
-## Database Schema
+Configure your MySQL credentials inside:
 
-The project includes a complete MySQL database schema with tables for all e-commerce entities and relationships between them.
+```
+config.py
+```
+
+Run the ETL pipeline
+
+```bash
+py main.py
+```
+
+---
+
+#  SQL Analytics
+
+Open the SQL files inside the `sql/` directory using MySQL Workbench and execute them sequentially.
+
+```
+01_basic_queries.sql
+
+↓
+
+02_join_queries.sql
+
+↓
+
+03_aggregation_queries.sql
+
+↓
+
+04_window_functions.sql
+
+↓
+
+05_cte_queries.sql
+
+↓
+
+06_business_kpis.sql
+```
+
+---
+
+# 📊 Power BI
+
+1. Open
+
+```
+dashboard/Ecommerce_Dashboard.pbix
+```
+
+2. Refresh the MySQL connection.
+
+3. Explore the interactive dashboard.
+
+---
+
+#  Known Limitation
+
+The `payments` table is currently excluded from dashboard analytics due to source data integrity issues encountered during ETL loading. This does not impact the remaining analytics pipeline or dashboard functionality.
+
+---
+
+#  Future Enhancements
+
+- Apache Airflow Scheduling
+- Docker Containerization
+- Incremental ETL Loading
+- AWS S3 Integration
+- Azure Data Factory
+- Snowflake Data Warehouse
+- Apache Spark ETL
+- Real-Time Kafka Streaming
+
+---
+
+#  Learning Outcomes
+
+This project demonstrates practical experience with:
+
+- ETL Pipeline Development
+- Data Validation
+- Data Cleaning
+- Relational Database Design
+- SQL Analytics
+- Window Functions
+- Common Table Expressions
+- Data Visualization
+- Power BI
+- Python Automation
+- Data Engineering Best Practices
+
+---
+
+#  Author
+
+**Puneeth K**
+
+Final Year Integrated M.Tech Computer Science Student
+
+Aspiring Data Engineer
+
+GitHub: https://github.com/Puneeth2004
+
+LinkedIn: https://linkedin.com/in/yourprofile
+
+---
+
+# ⭐ If you found this project useful, consider giving it a Star!
