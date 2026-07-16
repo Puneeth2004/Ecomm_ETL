@@ -430,7 +430,7 @@ Aspiring Data Engineer
 
 GitHub: https://github.com/Puneeth2004
 
-LinkedIn: https://linkedin.com/in/yourprofile
+LinkedIn: www.linkedin.com/in/puneeth-k-05254824b
 
 ---
 
