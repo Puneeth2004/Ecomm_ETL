@@ -156,7 +156,7 @@ The schema includes:
 
 ---
 
-# ⚙️ ETL Workflow
+# ETL Workflow
 
 ## 1️ Extract
 
@@ -369,7 +369,7 @@ Open the SQL files inside the `sql/` directory using MySQL Workbench and execute
 
 ---
 
-# 📊 Power BI
+#  Power BI
 
 1. Open
 
@@ -434,4 +434,4 @@ LinkedIn: www.linkedin.com/in/puneeth-k-05254824b
 
 ---
 
-# ⭐ If you found this project useful, consider giving it a Star!
+#  If you found this project useful, consider giving it a Star!
